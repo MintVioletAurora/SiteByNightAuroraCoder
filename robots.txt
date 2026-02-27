@@ -1,2 +1,6 @@
+# Разрешаем всем поисковым роботам индексировать сайт
 User-agent: *
-Disallow: /
+Allow: /
+
+# Указываем путь к карте сайта
+Sitemap: https://mintvioletaurora.github.io/4PDAFirmwareSite/sitemap.xml
