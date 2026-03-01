@@ -4,9 +4,9 @@
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Xiaomi, HyperOS, прошивки, Redmi Note 15, Redmi Note 14, Redmi 13C">
-	<title>4PDAFirmwareSite - Официальные прошивки HyperOS для Redmi</title>
-    <meta name="description" content="Скачать официальные прошивки HyperOS для смартфонов Xiaomi. Все ссылки ведут на официальные сервера Xiaomi.">
+    <meta name="keywords" content="Xiaomi, HyperOS, прошивки, Redmi Note 15, Redmi Note 14, Redmi 13C, Redmi Pad SE 8.7">
+	<title>SiteByNightAurora - Официальные прошивки HyperOS для Redmi</title>
+    <meta name="description" content="Скачать официальные прошивки HyperOS для смартфонов и планшетов Xiaomi. Все ссылки ведут на официальные сервера Xiaomi. Удобный поиск по устройствам.">
     
     
     <style>
@@ -270,6 +270,84 @@
             margin-bottom: 40px;
             text-align: center;
             color: #212529;
+        }
+
+        /* Стили для поиска */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            padding: 0 20px;
+        }
+        
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s ease;
+            background: white;
+            font-family: 'MiSans-Regular', sans-serif;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .search-input:focus {
+            border-color: #0074e1;
+            box-shadow: 0 5px 20px rgba(0,116,225,0.15);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+            pointer-events: none;
+        }
+        
+        .search-clear {
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #6c757d;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px 10px;
+            display: none;
+        }
+        
+        .search-clear:hover {
+            color: #dc3545;
+        }
+        
+        .search-results-count {
+            text-align: center;
+            margin: 20px 0;
+            color: #6c757d;
+            font-size: 0.95rem;
+            display: none;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6c757d;
+            font-size: 1.2rem;
+            display: none;
+        }
+        
+        .no-results .search-term {
+            color: #0074e1;
+            font-weight: 600;
         }
 
         /* Сетка карточек */
@@ -664,6 +742,7 @@
             .u-text-title { font-size: 1.5rem; }
             .u-text-subtitle { font-size: 1rem; }
             .u-image-logo { width: 250px; }
+            .search-input { font-size: 1rem; padding: 12px 15px; }
         }
 
         @font-face {
@@ -728,7 +807,7 @@
     <nav class="u-nav">
         <div class="u-sheet">
             <a class="u-nav-link active" onclick="showSection('home-section')">Главная</a>
-            <a class="u-nav-link" onclick="showSection('phones-section')">Смартфоны</a>
+            <a class="u-nav-link" onclick="showSection('phones-section')">Устройства</a>
             <a class="u-nav-link" onclick="showSection('latest-section')">Все прошивки</a>
             <a class="u-nav-link" onclick="showSection('disclaimer-section')">Подробнее</a>
         </div>
@@ -750,7 +829,7 @@
             <h2>Добро пожаловать!</h2>
             <div style="text-align: center; max-width: 800px; margin: 0 auto;">
                 <p style="font-size: 1.2rem; color: #6c757d; margin-bottom: 30px;">
-                    На этом сайте собраны официальные прошивки HyperOS для смартфонов Xiaomi.
+                    На этом сайте собраны официальные прошивки HyperOS для смартфонов и планшетов Xiaomi.
                     Все файлы взяты с официальных серверов Xiaomi. Сайт не хранит файлы, а предоставляет прямые ссылки.
                 </p>
                 <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px;">
@@ -763,8 +842,21 @@
     <!-- Раздел выбора смартфона -->
     <section class="u-section" id="phones-section">
         <div class="u-sheet">
-            <h2>Выберите смартфон</h2>
+            <h2>Выберите устройство</h2>
+            
+            <!-- Блок поиска -->
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <input type="text" class="search-input" id="phoneSearch" placeholder="Поиск по названию или кодовому имени... (например: Redmi, spinel, 13C)">
+                    <span class="search-icon">🔍</span>
+                    <button class="search-clear" id="clearSearch" onclick="clearSearch()">✕</button>
+                </div>
+            </div>
+            
             <div class="u-grid" id="phone-grid"></div>
+            <div class="no-results" id="noPhonesResult">
+                <span class="search-term" id="searchTermDisplay"></span> не найдено. Попробуйте изменить запрос.
+            </div>
         </div>
     </section>
     
@@ -772,7 +864,21 @@
     <section class="u-section" id="latest-section">
         <div class="u-sheet">
             <h2>Все доступные прошивки</h2>
+            
+            <!-- Блок поиска -->
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <input type="text" class="search-input" id="firmwareSearch" placeholder="Поиск по модели, версии или кодовому имени... (например: 15, 2.0.204)">
+                    <span class="search-icon">🔍</span>
+                    <button class="search-clear" id="clearFirmwareSearch" onclick="clearFirmwareSearch()">✕</button>
+                </div>
+                <div class="search-results-count" id="firmwareResultsCount"></div>
+            </div>
+            
             <div class="u-grid" id="firmware-grid"></div>
+            <div class="no-results" id="noFirmwareResult">
+                <span class="search-term" id="firmwareSearchTermDisplay"></span> не найдено. Попробуйте изменить запрос.
+            </div>
         </div>
     </section>
     
@@ -816,7 +922,7 @@
     <section class="u-section" id="detail-section">
         <div class="phone-detail-header">
             <div class="u-sheet">
-                <a class="back-button" onclick="showSection('phones-section')">← Назад к смартфонам</a>
+                <a class="back-button" onclick="showSection('phones-section')">← Назад к устройствам</a>
                 <h1 class="detail-title" id="detail-title">Redmi Note 15</h1>
                 <div class="detail-code" id="detail-code">spinel</div>
                 <div class="detail-stats" id="detail-stats"></div>
@@ -906,7 +1012,7 @@
                 icon: '📱'
             },
 			{
-                id: 'r13c-fastboot-205MI',
+                id: 'r13c-fastboot-205',
                 modelId: 'redmi-13c',
                 modelName: 'Redmi 13C',
                 modelCode: 'gale',
@@ -917,17 +1023,194 @@
                 android: '15',
                 page: 'Redmi13C-MIFirwm205.html',
                 icon: '📱'
+            },
+            {
+                id: 'RNote14S-recovery-34',
+                modelId: 'REDMI-Note-14S',
+                modelName: 'REDMI Note 14S',
+                modelCode: 'Emerald_R',
+                version: '3.0.4.0.WFOMIXM',
+                date: '2026-02-22',
+                type: 'Recovery',
+                region: 'MI',
+                android: '16',
+                page: 'RedmiNote14S-RecoveryMI34.html',
+                icon: '📱'
+            },
+            {
+                id: 'rpadse87-recovery-203',
+                modelId: 'redmi-pad-se-87',
+                modelName: 'Redmi Pad SE 8.7',
+                modelCode: 'flare',
+                version: '2.0.203.0.VHXTRXM',
+                date: '2026-01-29',
+                type: 'Recovery',
+                region: 'Global',
+                android: '15',
+                page: 'RedmiPADSE87-Recovery.html',
+                icon: '📱'
+            },
+            {
+                id: 'rpadse87-fastboot-203',
+                modelId: 'redmi-pad-se-87',
+                modelName: 'Redmi Pad SE 8.7',
+                modelCode: 'flare',
+                version: '2.0.203.0.VHXTRXM',
+                date: '2026-01-15',
+                type: 'Fastboot',
+                region: 'Global',
+                android: '15',
+                page: 'RedmiPADSE87-Fastboot.html',
+                icon: '📱'
             }
         ];
         
         const models = [
-            { id: 'redmi-note-15', name: 'Redmi Note 15', code: 'spinel', icon: '📱' },
+            { id: 'redmi-note-15', name: 'REDMI Note 15', code: 'spinel', icon: '📱' },
+            { id: 'REDMI-Note-14S', name: 'REDMI Note 14S', code: 'Emerald_R', icon: '📱' },
             { id: 'redmi-note-14', name: 'Redmi Note 14 4G', code: 'tanzanite', icon: '📱' },
-            { id: 'redmi-13c', name: 'Redmi 13C', code: 'gale', icon: '📱' }
+            { id: 'redmi-13c', name: 'Redmi 13C', code: 'gale', icon: '📱' },
+            { id: 'redmi-pad-se-87', name: 'Redmi Pad SE 8.7', code: 'flare', icon: '📱' }
         ];
         
         // ============================================
-        // ФУНКЦИИ
+        // ФУНКЦИИ ПОИСКА
+        // ============================================
+        
+        let searchTimeout;
+        
+        // Поиск по устройствам
+        function setupPhoneSearch() {
+            const searchInput = document.getElementById('phoneSearch');
+            const clearBtn = document.getElementById('clearSearch');
+            const noResultsDiv = document.getElementById('noPhonesResult');
+            const searchTermSpan = document.getElementById('searchTermDisplay');
+            
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                
+                // Показать/скрыть кнопку очистки
+                clearBtn.style.display = searchTerm ? 'block' : 'none';
+                
+                // Получить все карточки устройств
+                const phoneGrid = document.getElementById('phone-grid');
+                const cards = phoneGrid.getElementsByClassName('u-card-phone');
+                
+                let visibleCount = 0;
+                
+                Array.from(cards).forEach(card => {
+                    const title = card.querySelector('.u-card-title').textContent.toLowerCase();
+                    const code = card.querySelector('.u-card-code').textContent.toLowerCase();
+                    const matches = title.includes(searchTerm) || code.includes(searchTerm);
+                    
+                    card.style.display = matches ? 'block' : 'none';
+                    if (matches) visibleCount++;
+                });
+                
+                // Показать/скрыть сообщение "не найдено"
+                if (visibleCount === 0 && searchTerm) {
+                    searchTermSpan.textContent = `"${searchTerm}"`;
+                    noResultsDiv.style.display = 'block';
+                } else {
+                    noResultsDiv.style.display = 'none';
+                }
+            }
+            
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(performSearch, 300); // Задержка 300ms для оптимизации
+            });
+        }
+        
+        // Поиск по прошивкам
+        function setupFirmwareSearch() {
+            const searchInput = document.getElementById('firmwareSearch');
+            const clearBtn = document.getElementById('clearFirmwareSearch');
+            const noResultsDiv = document.getElementById('noFirmwareResult');
+            const resultsCountDiv = document.getElementById('firmwareResultsCount');
+            const searchTermSpan = document.getElementById('firmwareSearchTermDisplay');
+            
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                
+                // Показать/скрыть кнопку очистки
+                clearBtn.style.display = searchTerm ? 'block' : 'none';
+                
+                // Получить все карточки прошивок
+                const firmwareGrid = document.getElementById('firmware-grid');
+                const cards = firmwareGrid.getElementsByClassName('u-card-firmware');
+                
+                let visibleCount = 0;
+                
+                Array.from(cards).forEach(card => {
+                    const model = card.querySelector('.u-firmware-model').textContent.toLowerCase();
+                    const version = card.querySelector('.u-firmware-version').textContent.toLowerCase();
+                    const badges = Array.from(card.querySelectorAll('.u-type-badge')).map(b => b.textContent.toLowerCase()).join(' ');
+                    
+                    const matches = model.includes(searchTerm) || 
+                                   version.includes(searchTerm) || 
+                                   badges.includes(searchTerm);
+                    
+                    card.style.display = matches ? 'block' : 'none';
+                    if (matches) visibleCount++;
+                });
+                
+                // Обновить счетчик результатов
+                if (searchTerm) {
+                    resultsCountDiv.style.display = 'block';
+                    const word = visibleCount === 1 ? 'прошивка' : 
+                                (visibleCount >= 2 && visibleCount <= 4 ? 'прошивки' : 'прошивок');
+                    resultsCountDiv.textContent = `Найдено ${visibleCount} ${word}`;
+                } else {
+                    resultsCountDiv.style.display = 'none';
+                }
+                
+                // Показать/скрыть сообщение "не найдено"
+                if (visibleCount === 0 && searchTerm) {
+                    searchTermSpan.textContent = `"${searchTerm}"`;
+                    noResultsDiv.style.display = 'block';
+                } else {
+                    noResultsDiv.style.display = 'none';
+                }
+            }
+            
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(performSearch, 300);
+            });
+        }
+        
+        // Очистка поиска по устройствам
+        function clearSearch() {
+            const searchInput = document.getElementById('phoneSearch');
+            searchInput.value = '';
+            document.getElementById('clearSearch').style.display = 'none';
+            document.getElementById('noPhonesResult').style.display = 'none';
+            
+            // Показать все карточки
+            const phoneGrid = document.getElementById('phone-grid');
+            Array.from(phoneGrid.getElementsByClassName('u-card-phone')).forEach(card => {
+                card.style.display = 'block';
+            });
+        }
+        
+        // Очистка поиска по прошивкам
+        function clearFirmwareSearch() {
+            const searchInput = document.getElementById('firmwareSearch');
+            searchInput.value = '';
+            document.getElementById('clearFirmwareSearch').style.display = 'none';
+            document.getElementById('noFirmwareResult').style.display = 'none';
+            document.getElementById('firmwareResultsCount').style.display = 'none';
+            
+            // Показать все карточки
+            const firmwareGrid = document.getElementById('firmware-grid');
+            Array.from(firmwareGrid.getElementsByClassName('u-card-firmware')).forEach(card => {
+                card.style.display = 'block';
+            });
+        }
+        
+        // ============================================
+        // ФУНКЦИИ НАВИГАЦИИ
         // ============================================
         
         function showSection(sectionId) {
@@ -1049,8 +1332,18 @@
                 firmwareGrid.appendChild(card);
             });
             
+            // Инициализация поиска
+            setupPhoneSearch();
+            setupFirmwareSearch();
+            
             showSection('home-section');
         });
+        
+        // Делаем функции очистки глобальными для вызова из HTML
+        window.clearSearch = clearSearch;
+        window.clearFirmwareSearch = clearFirmwareSearch;
+        window.showSection = showSection;
+        window.showPhoneDetail = showPhoneDetail;
     </script>
 </body>
 </html>

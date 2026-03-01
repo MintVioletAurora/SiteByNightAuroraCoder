@@ -1,0 +1,235 @@
+.u-section-1 .u-sheet-1 {
+  min-height: auto;
+  padding: 40px 0 60px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.u-section-1 .u-line-1 {
+  position: absolute;
+  top: 198px;
+  height: 582px;
+  left: auto;
+  transform-origin: center top;
+  right: 568px;
+  transform: rotate(359deg);
+  border-left: 2px solid #b3b3b3;
+}
+
+.u-section-1 .u-image-1 {
+  width: 584px;
+  height: 66px;
+  margin: 40px auto 0;
+  display: block;
+}
+
+.u-section-1 .u-text-1 {
+  font-family: MiSans-Regular;
+  margin: 13px auto 0;
+  text-align: center;
+  color: #808080;
+}
+
+.u-section-1 .u-text-2 {
+  font-family: MiSans-Regular;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  font-weight: 700;
+  margin: 58px 6px 0 819px;
+  text-align: center;
+}
+
+.u-section-1 .u-text-3 {
+  font-family: MiSans-Regular;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: -115px 737px 0 -50px;
+  padding: 15px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+}
+
+/* Общие стили для всех кнопок */
+.u-section-1 [class*="u-btn-"] {
+  --radius: 15px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: monospace;
+  background-image: none;
+  background-color: #0074e1 !important;
+  color: #ffffff !important;
+  border: none;
+  padding: 16px 20px !important;
+  width: 300px;
+  text-align: center;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-left: auto !important;
+  margin-right: -50px !important;
+  box-sizing: border-box;
+  text-decoration: none;
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+  white-space: normal;
+  word-break: break-all;
+}
+
+.u-section-1 [class*="u-btn-"]:hover {
+  background-color: #006dd1 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,116,225,0.3);
+}
+
+/* Позиционирование кнопок */
+.u-section-1 .u-btn-1 { margin-top: 104px; }
+.u-section-1 .u-btn-2 { margin-top: 40px; }
+.u-section-1 .u-btn-3 { margin-top: 40px; }
+.u-section-1 .u-btn-4 { margin-top: 40px; margin-bottom: 0; }
+
+.u-section-1 .u-text-4 {
+  font-family: MiSans-Regular;
+  font-weight: 700;
+  margin: 13px 50px 0 880px;
+  color: #404040;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Адаптация */
+@media (max-width: 1199px) {
+  .u-section-1 .u-line-1 { right: 468px; }
+  
+  .u-section-1 .u-text-2 {
+    width: auto;
+    margin-top: 69px;
+    margin-right: 55px;
+    margin-left: 570px;
+  }
+
+  .u-section-1 .u-text-3 {
+    width: auto;
+    margin-top: -126px;
+    margin-right: 582px;
+    margin-left: -30px;
+  }
+
+  .u-section-1 [class*="u-btn-"] {
+    width: 280px;
+    margin-right: 0 !important;
+    padding: 16px 15px !important;
+    font-size: 0.85rem;
+  }
+
+  .u-section-1 .u-text-4 {
+    width: auto;
+    margin: -402px 101px 173px 615px;
+    white-space: normal;
+    text-align: right;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-line-1 { right: 358px; }
+
+  .u-section-1 .u-text-2 {
+    margin-top: 58px;
+    margin-right: 0;
+    margin-left: 405px;
+  }
+
+  .u-section-1 .u-text-3 {
+    margin-right: 360px;
+    margin-left: -20px;
+  }
+
+  .u-section-1 [class*="u-btn-"] {
+    width: 250px;
+    font-size: 0.8rem;
+    padding: 14px 12px !important;
+  }
+
+  .u-section-1 .u-text-4 {
+    margin-top: 19px;
+    margin-right: 40px;
+    margin-left: 446px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .u-section-1 .u-image-1 {
+    width: 540px;
+    height: 61px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .u-section-1 .u-text-2 {
+    font-size: 1.333rem;
+    margin: 39px auto 0;
+    width: 100%;
+  }
+
+  .u-section-1 .u-text-3 {
+    margin: 434px auto 0;
+    width: 90%;
+    position: static;
+    text-align: center;
+  }
+
+  .u-section-1 [class*="u-btn-"] {
+    width: 90%;
+    max-width: 350px;
+    margin: 20px auto !important;
+    display: block;
+    font-size: 0.9rem;
+    word-break: break-word;
+  }
+
+  .u-section-1 .u-btn-1 { margin-top: -446px; }
+  .u-section-1 .u-btn-2,
+  .u-section-1 .u-btn-3,
+  .u-section-1 .u-btn-4 { margin-top: 20px; }
+
+  .u-section-1 .u-text-4 {
+    width: auto;
+    margin: 20px auto 0;
+    text-align: center;
+    position: static;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-image-1 {
+    width: 340px;
+    height: 38px;
+  }
+
+  .u-section-1 .u-text-3 { margin-top: 439px; }
+  .u-section-1 .u-btn-1 { margin-top: -469px; }
+  .u-section-1 .u-btn-2,
+  .u-section-1 .u-btn-3,
+  .u-section-1 .u-btn-4 { margin-top: 15px; }
+  .u-section-1 .u-text-4 { margin-top: 20px; margin-bottom: 0; }
+}
+
+/* page-custom-fonts */
+@font-face {
+  font-family: 'MiSans-Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/MiSans-Regular.ttf);
+}
+@font-face {
+  font-family: 'MiSans-Normal';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/MiSans-Normal.ttf);
+}
